@@ -7,6 +7,7 @@ namespace ShoppingList.Views
     {
         public event EventHandler? ItemDeleted;
         public event EventHandler? ItemStatusChanged;
+        public event EventHandler ItemQuantityChanged;
 
         public ShoppingItemView()
         {
@@ -18,6 +19,7 @@ namespace ShoppingList.Views
             if (BindingContext is ShoppingItem item)
             {
                 item.Quantity++;
+                ItemQuantityChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -26,6 +28,7 @@ namespace ShoppingList.Views
             if (BindingContext is ShoppingItem item && item.Quantity > 1)
             {
                 item.Quantity--;
+                ItemQuantityChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 

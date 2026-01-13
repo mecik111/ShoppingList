@@ -73,6 +73,11 @@ namespace ShoppingList.Views
                     RenderList();
                 };
 
+                view.ItemQuantityChanged += (s, e) =>
+                {
+                    SaveData();
+                };
+
                 ItemsStackLayout.Add(view);
             }
         }
