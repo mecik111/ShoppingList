@@ -7,7 +7,7 @@ namespace ShoppingList.Views
     {
         public event EventHandler? ItemDeleted;
         public event EventHandler? ItemStatusChanged;
-        public event EventHandler ItemQuantityChanged;
+        public event EventHandler? ItemQuantityChanged;
 
         public ShoppingItemView()
         {
@@ -60,4 +60,5 @@ namespace ShoppingList.Views
             }
         }
     }
+
 }
