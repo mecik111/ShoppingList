@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:ShoppingList.Models"
+             x:Class="ShoppingList.Views.ShoppingItemView">
+
+    <Border 
+        Padding="10" 
+        Margin="5">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="10"/>
+        </Border.StrokeShape>
+
+        <Grid ColumnDefinitions="Auto,*,Auto,Auto" RowDefinitions="Auto,Auto">
+
+            <CheckBox Grid.Row="0" Grid.Column="0" 
+                      Grid.RowSpan="2"
+                      IsChecked="{Binding IsBought}" 
+                      CheckedChanged="OnIsBoughtChanged"
+                      VerticalOptions="Center"/>
+
+           
+            <Label x:Name="NameLabel"
+                   Grid.Row="0" Grid.Column="1"
+                   Text="{Binding Name}"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"/>
+
+            <HorizontalStackLayout Grid.Row="0" Grid.Column="2" Spacing="5" VerticalOptions="Center">
+                <Button Text="-" Clicked="OnDecreaseClicked" HeightRequest="35" WidthRequest="35" Padding="0"/>
+
+                <Entry Text="{Binding Quantity}" 
+                       Keyboard="Numeric"
+                       WidthRequest="50"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="Center"/>
+
+                <Button Text="+" Clicked="OnIncreaseClicked" HeightRequest="35" WidthRequest="35" Padding="0"/>
+
+                <Label Text="{Binding Unit}" VerticalOptions="Center" Margin="5,0,0,0"/>
+            </HorizontalStackLayout>
+
+            <Button Grid.Row="0" Grid.Column="3"
+                    Text="X"
+                    Clicked="OnDeleteClicked"
+                    VerticalOptions="Center"/>
+        </Grid>
+    </Border>
+</ContentView>
