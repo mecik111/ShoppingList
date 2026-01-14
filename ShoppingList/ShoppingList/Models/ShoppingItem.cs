@@ -7,7 +7,7 @@ namespace ShoppingList.Models
     {
         private string name = "";
         private string unit = "szt.";
-        private int quantity = 1;
+        private float quantity = 1f;
         private bool isBought;
 
         public string Id { get; set; } = Guid.NewGuid().ToString();
@@ -24,7 +24,7 @@ namespace ShoppingList.Models
             set { unit = value; }
         }
 
-        public int Quantity
+        public float Quantity
         {
             get => quantity;
             set { quantity = value; OnPropertyChanged(); }
