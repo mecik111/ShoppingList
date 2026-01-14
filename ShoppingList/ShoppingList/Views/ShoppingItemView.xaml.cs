@@ -1,5 +1,4 @@
 using ShoppingList.Models;
-using System.Xml;
 
 namespace ShoppingList.Views
 {

@@ -23,9 +23,9 @@ namespace ShoppingList.Views
                 return;
             }
 
-            if (!int.TryParse(NewItemQuantityEntry.Text, out int quantity) || quantity < 1)
+            if (!float.TryParse(NewItemQuantityEntry.Text, out float quantity) || (quantity <= 0))
             {
-                DisplayAlert("B³¹d", "Podaj prawid³ow¹ iloœæ (minimum 1).", "OK");
+                DisplayAlert("B³¹d", "Podaj prawid³ow¹ iloœæ wiêksz¹ od zera.", "OK");
                 return;
             }
 
@@ -51,11 +51,11 @@ namespace ShoppingList.Views
         {
             ItemsStackLayout.Children.Clear();
 
-            var sortedItems = items.OrderBy(i => i.IsBought).ToList();
+            List<ShoppingItem> sortedItems = items.OrderBy(i => i.IsBought).ToList();
 
-            foreach (var item in sortedItems)
+            foreach (ShoppingItem item in sortedItems)
             {
-                var view = new ShoppingItemView
+                ShoppingItemView view = new ShoppingItemView
                 {
                     BindingContext = item
                 };
@@ -119,7 +119,7 @@ namespace ShoppingList.Views
                     Id = x.Attribute("Id")?.Value ?? Guid.NewGuid().ToString(),
                     Name = x.Element("Name")?.Value ?? string.Empty,
                     Unit = x.Element("Unit")?.Value ?? "szt.",
-                    Quantity = int.Parse(x.Element("Quantity")?.Value ?? "1"),
+                    Quantity = float.Parse(x.Element("Quantity")?.Value ?? "1"),
                     IsBought = bool.Parse(x.Element("IsBought")?.Value ?? "false")
                 }).ToList();
             }
